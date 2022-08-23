@@ -1,8 +1,9 @@
 <%-- 
-    Document   : chamcong
-    Created on : Aug 18, 2022, 3:03:57 PM
+    Document   : overtime.jsp
+    Created on : Aug 23, 2022, 11:32:50 AM
     Author     : kienb
 --%>
+
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -15,11 +16,11 @@
     </head>
     <body>
         <jsp:include page="header.jsp"></jsp:include>
-            <div id="body">
-            <jsp:useBean id="dt" class="utils.DateHelper"/>
+        <jsp:useBean id="dt" class="utils.DateHelper"/>
+        <div id="body">
             <div>
-                <form action="chamcong" method="post" id="form">
-                    <div id="label-title">Chọn Tháng Muốn Xuất Bảng Chấm Công </div>
+                <form action="overtime" method="post" id="form">
+                    <div id="label-title">Chọn Tháng Muốn Xuất Bảng Làm Thêm Giờ</div>
                     <input type="month" class="month" name="date">
                     <br>
                     <input type="submit" value="Search" class="sendData">
@@ -45,7 +46,7 @@
                                 <c:forEach items="${requestScope.dates}" var="d">
                                     <th>
                                         <fmt:formatDate pattern = "dd" 
-                                                        value = "${d}" /> 
+                                                        value = "${d}"/> 
                                     </th>
                                 </c:forEach>
                             </tr>
@@ -67,19 +68,14 @@
                                         <td>${i.position}</td>
                                         <c:forEach items="${requestScope.dates}" var="d">
                                             <td>
-                                                <c:forEach items="${i.list_workingtime}" var="t">
-                                                    <c:if test="${t eq d}">
-                                                        1
-                                                    </c:if>
-                                                </c:forEach>
-                                                <c:forEach items="${i.list_leave}" var="u">
-                                                    <c:if test="${u eq d}">
-                                                        CP
+                                                <c:forEach items="${i.list_overtime}" var="t">
+                                                    <c:if test="${t.date eq d}">
+                                                        ${t.hours}
                                                     </c:if>
                                                 </c:forEach>
                                             </td>
                                         </c:forEach>   
-                                        <td>${i.totalWorking()}</td>
+                                        <td>${i.totalHoursOvertime()}</td>
                                     </tr>
                                 </c:if>
                             </c:forEach>
@@ -87,6 +83,7 @@
                     </table>
                 </div>
             </c:if>
-            <jsp:include page="footer.jsp"></jsp:include>
+        </div>
+        <jsp:include page="footer.jsp"></jsp:include>
     </body>
 </html>

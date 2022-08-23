@@ -33,9 +33,6 @@ public class Overtime {
     public void setHours(double hours) {
         this.hours = hours;
     }
-
-    
-
     public int getId() {
         return id;
     }

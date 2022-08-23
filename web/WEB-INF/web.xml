@@ -4,9 +4,25 @@
         <servlet-name>displaySalary</servlet-name>
         <servlet-class>Controller.displaySalary</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>chamcong</servlet-name>
+        <servlet-class>Controller.chamcong</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Overtime</servlet-name>
+        <servlet-class>Controller.Overtime</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>displaySalary</servlet-name>
         <url-pattern>/displaySalary</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>chamcong</servlet-name>
+        <url-pattern>/chamcong</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Overtime</servlet-name>
+        <url-pattern>/overtime</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

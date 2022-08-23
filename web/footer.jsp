@@ -1,6 +1,6 @@
 <%-- 
-    Document   : luong.jsp
-    Created on : Aug 18, 2022, 12:28:22 PM
+    Document   : footer
+    Created on : Aug 23, 2022, 1:55:04 AM
     Author     : kienb
 --%>
 
@@ -13,10 +13,8 @@
         <link rel="stylesheet" href="CSS/style.css"/>
     </head>
     <body>
-        <jsp:include page="header.jsp"></jsp:include>
-        <div id="body-index">
-            <div id="title">DOANH NGHIỆP QUẢN TRỊ NHÂN SỰ TOÀN DIỆN</div>
+        <div id="footer">
+            <h1>COPYRIGHT BY NGUYEN HOANG KIEN</h1>
         </div>
-        <jsp:include page="footer.jsp"></jsp:include>
     </body>
 </html>

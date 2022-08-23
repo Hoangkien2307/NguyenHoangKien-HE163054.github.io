@@ -4,8 +4,10 @@
  */
 package Model;
 
+import DAL.FestivalDBContext;
 import java.util.ArrayList;
 import java.util.Date;
+import utils.DateHelper;
 
 /**
  *
@@ -19,23 +21,32 @@ public class Employee {
     private ArrayList<Date> list_workingtime = new ArrayList<>();
     private double base_salary;
     private double ins_salary;
-    private double reno_salary;
+    private boolean isManager;
     private ArrayList<Allowdance> list_allow = new ArrayList<>();
     private ArrayList<Overtime> list_overtime = new ArrayList<>();
     private ArrayList<Insurance> list_ins = new ArrayList<>();
-
+    private ArrayList<Leave> list_leave = new ArrayList<>();
     public Employee() {
     }
 
-    public Employee(String id, String emp_name, String position, double base_salary, double ins_salary, double reno_salary) {
+    public Employee(String id, String emp_name, String position, double base_salary, double ins_salary, boolean isManager) {
         this.id = id;
         this.emp_name = emp_name;
         this.position = position;
         this.base_salary = base_salary;
         this.ins_salary = ins_salary;
-        this.reno_salary = reno_salary;
+        this.isManager = isManager;
     }
 
+    public ArrayList<Leave> getList_leave() {
+        return list_leave;
+    }
+
+    public void setList_leave(ArrayList<Leave> list_leave) {
+        this.list_leave = list_leave;
+    }
+
+    
     public String getId() {
         return id;
     }
@@ -84,8 +95,12 @@ public class Employee {
         this.ins_salary = ins_salary;
     }
 
-    public double getReno_salary() {
-        return reno_salary;
+    public boolean isIsManager() {
+        return isManager;
+    }
+
+    public void setIsManager(boolean isManager) {
+        this.isManager = isManager;
     }
 
     public ArrayList<Allowdance> getList_allow() {
@@ -110,6 +125,48 @@ public class Employee {
 
     public void setList_ins(ArrayList<Insurance> list_ins) {
         this.list_ins = list_ins;
+    }
+
+    public double totalWorking() {
+        double sum = 0;
+        FestivalDBContext fdb = new FestivalDBContext();
+        ArrayList<Festival> list_fes = fdb.getFestivalAll();
+        for (Date i : list_workingtime) {
+            Festival temp = null;
+            for (Festival p : list_fes) {
+                if (i.compareTo(p.getFrom()) >= 0 && i.compareTo(p.getTo()) <= 0) {
+                    temp = p;
+                    break;
+                }
+            }
+            if (temp == null) {
+                sum++;
+            } else {
+                sum += temp.getCo_feswork();
+            }
+        }
+        return sum;
+    }
+
+    public double totalHoursOvertime() {
+        double result = 0;
+        for (Overtime i : list_overtime) {
+            result += i.getHours();
+        }
+        return result;
+    }
+
+    public double getRealSalary(String year, String month) {
+        double salaryOnday = (isManager ? base_salary / DateHelper.getDaysOfMonths(year, month) : base_salary / 26);
+        double total_Ins = 0;
+        for (Insurance i : list_ins) {
+            total_Ins += i.getPercent() * ins_salary;
+        }
+        double total_allow = 0;
+        for (Allowdance i : list_allow) {
+            total_allow += i.getMoney();
+        }
+        return salaryOnday * totalWorking() + salaryOnday * totalHoursOvertime() * 1.5 / 8 - total_Ins + total_allow;
     }
 
 }

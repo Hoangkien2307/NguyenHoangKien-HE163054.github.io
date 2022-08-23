@@ -26,7 +26,7 @@ Select e.Employee_id,i.id,i.name,i.[percent] from Employee e join Emp_Insurance 
 
 
 -- lay thong tin bang cham cong trong thang nao
-Select e.Employee_id,work_date from Employee e join Working_time w on e.Employee_id = w.Employee_id
+Select e.Employee_id,work_date from Employee e inner join Working_time w on e.Employee_id = w.Employee_id
 where Month(work_date) = 11 and YEAR(work_date) = 2020
 
 -- lay thong tin lam them gio
@@ -34,3 +34,5 @@ Select e.Employee_id,o.overtime_id,o.date,o.Hour from Employee e left join over_
 left join Overtime o on ov.overtime_id = o.overtime_id
 where Month(o.date) = 11 and YEAR(o.date) = 2020 and isCheck = 1
 
+Select e.Employee_id,e.Employee_Name,p.Name,e.base_Salary,e.isurance_money,p.isManager
+from Employee e join Position p on e.pID = p.pID 

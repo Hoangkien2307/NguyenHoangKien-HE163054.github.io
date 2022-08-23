@@ -19,7 +19,7 @@
             <div class="container">
                 <div class="item"><a href="luong.jsp">Bảng Luơng Nhân Viên</a></div>
                 <div class="item"><a href="chamcong.jsp">Bảng Chấm Công</a></div>
-                <div class="item"><a href="#">Bảng Làm Thêm Giờ</a></div>      
+                <div class="item"><a href="overtime.jsp">Bảng Làm Thêm Giờ</a></div>      
             </div>
         </div>
     </body>

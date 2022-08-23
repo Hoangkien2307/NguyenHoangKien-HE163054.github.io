@@ -4,6 +4,8 @@
     Author     : kienb
 --%>
 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,270 +16,139 @@
     </head>
     <body>
         <jsp:include page="header.jsp"></jsp:include>
-        <div id="body">
-            <div>
-                <form action="displaySalary" method="POST" id="form">
-                    <div id="label-title">Chọn Tháng Muốn Xuất Bảng Lương </div>
-                    <input type="month" class="month" name="date">
-                    <br>
-                    <input type="submit" value="Search">
-                </form>
-            </div>
-            <div>
-                <table border="1" style="border-collapse: collapse">
-                    <thead>
-                        <tr>
-                            <th rowspan="2">STT</th>
-                            <th rowspan="2">Mã Nhân Viên</th>
-                            <th rowspan="2">Họ Và Tên</th>
-                            <th rowspan="2">Chức Vụ</th>
-                            <th rowspan="2">Mức lương cơ bản</th>
-                            <th rowspan="2">Luong bao hiem</th>
-                            <th rowspan="2">Mức lương/ ngày công</th>
-                            <th colspan="2">Lương sản xuất</th>
-                            <th colspan="2">Phụ cấp</th>
-                            <th colspan="2">Lương thêm giờ</th>
-                            <th colspan="4">Bảo hiểm</th>
-                            <th rowspan="2">Tổng lương thực lĩnh</th>
-                        </tr>
-                        <tr>
-                            <th>Số công</th>
-                            <th>Tiền lương SX</th>
-                            <th>Trách nhiệm</th>
-                            <th>điện thoại</th>
-                            <th>Số giờ</th>
-                            <th>Tiền lương thêm giờ</th>
-                            <th>BHXH</th>
-                            <th>BHYT</th>
-                            <th>BHTN</th>
-                            <th>KPCD</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>nv01</td>
-                            <td>Lê Hoàng Anh</td>
-                            <td>Trưởng Phòng Kỹ Thuật</td>
-                            <td>17000000</td>
-                            <td>5585000</td>
-                            <td>653846</td>
-                            <td>30</td>
-                            <td>17000000</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>446800</td>
-                            <td>83775</td>
-                            <td>55850</td>
-                            <td>55850</td>
-                            <td>16357725</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>nv02</td>
-                            <td>Nguyễn Quang Hòa</td>
-                            <td>Nhân Viên Kỹ Thuật</td>
-                            <td>6000000</td>
-                            <td>3306300</td>
-                            <td>230769</td>
-                            <td>30</td>
-                            <td>6923077</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>264504</td>
-                            <td>49595</td>
-                            <td>33063</td>
-                            <td>33063</td>
-                            <td>6542852</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>nv03</td>
-                            <td>Hoàng Thị H.Khuyên</td>
-                            <td>Kế Toán</td>
-                            <td>7000000</td>
-                            <td>3306300</td>
-                            <td>269230</td>
-                            <td>28</td>
-                            <td>7538462</td>
-                            <td>-</td>
-                            <td>200000</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>264504</td>
-                            <td>49595</td>
-                            <td>33063</td>
-                            <td>33063</td>
-                            <td>7358237</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>nv04</td>
-                            <td>Nguyễn Công Hương</td>
-                            <td>Thủ kho</td>
-                            <td>7000000</td>
-                            <td>3306300</td>
-                            <td>269231</td>
-                            <td>30</td>
-                            <td>8076923</td>
-                            <td>500000</td>
-                            <td>-</td>
-                            <td>90</td>
-                            <td>4543269</td>
-                            <td>264504</td>
-                            <td>49595</td>
-                            <td>33063</td>
-                            <td>33063</td>
-                            <td>12739968</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>nv05</td>
-                            <td>Phạm Thị Thu</td>
-                            <td>Thủ kho</td>
-                            <td>5800000</td>
-                            <td>3306300</td>
-                            <td>223077</td>
-                            <td>28</td>
-                            <td>6246154</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>264504</td>
-                            <td>49595</td>
-                            <td>33063</td>
-                            <td>33063</td>
-                            <td>5865929</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>nv06</td>
-                            <td>Vũ Minh Hiếu</td>
-                            <td>Thủ kho</td>
-                            <td>6500000</td>
-                            <td>3306300</td>
-                            <td>250000</td>
-                            <td>29</td>
-                            <td>7250000</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>264504</td>
-                            <td>49595</td>
-                            <td>33063</td>
-                            <td>33063</td>
-                            <td>6869776</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>nv07</td>
-                            <td>Phan Trần Hướng</td>
-                            <td>Thủ kho</td>
-                            <td>5700000</td>
-                            <td>3306300</td>
-                            <td>219231</td>
-                            <td>30</td>
-                            <td>6576923</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>264504</td>
-                            <td>49595</td>
-                            <td>33063</td>
-                            <td>33063</td>
-                            <td>6196699</td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td>nv08</td>
-                            <td>Nguyễn Thị Cải</td>
-                            <td>Thủ kho</td>
-                            <td>5500000</td>
-                            <td>3306300</td>
-                            <td>211538</td>
-                            <td>29</td>
-                            <td>6134615</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>12</td>
-                            <td>475962</td>
-                            <td>264504</td>
-                            <td>49595</td>
-                            <td>33063</td>
-                            <td>33063</td>
-                            <td>6230352</td>
-                        </tr>
-                        <tr>
-                            <td>9</td>
-                            <td>nv09</td>
-                            <td>Ng.T Xuân Quỳnh</td>
-                            <td>Thủ kho</td>
-                            <td>5500000</td>
-                            <td>3306300</td>
-                            <td>211538</td>
-                            <td>27</td>
-                            <td>5711538</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>264504</td>
-                            <td>49595</td>
-                            <td>33063</td>
-                            <td>33063</td>
-                            <td>5331314</td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>nv10</td>
-                            <td>Lương Thị Cảnh</td>
-                            <td>Thủ kho</td>
-                            <td>5000000</td>
-                            <td>-</td>
-                            <td>192308</td>
-                            <td>29</td>
-                            <td>5576923</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>5576923</td>
-                        </tr>
-                        <tr>
-                            <td>11</td>
-                            <td>nv11</td>
-                            <td>Tiêu Đức Hiệp</td>
-                            <td>Thủ kho</td>
-                            <td>4000000</td>
-                            <td>-</td>
-                            <td>153846</td>
-                            <td>7</td>
-                            <td>1076923</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>1076923</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-            </div>
+            <div id="body">
+                <div>
+                    <form action="displaySalary" method="POST" id="form">
+                        <div id="label-title">Chọn Tháng Muốn Xuất Bảng Lương </div>
+                        <input type="month" class="month" name="date">
+                        <br>
+                        <input type="submit" value="Search" class="sendData">
+                    </form>
+                </div>
+            <c:if test="${requestScope.month != null and requestScope.year != null}">
+                <div style="margin: 2% 0%; font-size: larger;color: blueviolet;text-align: center">Bảng Lưong Tháng ${requestScope.month} Năm ${requestScope.year}</div>
+            </c:if>
+            <div style="text-align: center;font-size: larger; color: red">${requestScope.error}</div>
+            <c:if test="${requestScope.list!= null}">
+                <div class="infor">
+                    <table border="1" style="border-collapse: collapse">
+                        <thead>
+                            <tr>
+                                <th rowspan="2">Mã Nhân Viên</th>
+                                <th rowspan="2">Họ Và Tên</th>
+                                <th rowspan="2">Chức Vụ</th>
+                                <th rowspan="2">Mức lương cơ bản</th>
+                                <th rowspan="2">Luong bao hiem</th>
+                                <th rowspan="2">Mức lương/ ngày công</th>
+                                <th colspan="2">Lương sản xuất</th>
+                                <th colspan="2">Phụ cấp</th>
+                                <th colspan="2">Lương thêm giờ</th>
+                                <th colspan="4">Bảo hiểm</th>
+                                <th rowspan="2">Tổng lương thực lĩnh</th>
+                            </tr>
+                            <tr>
+                                <th>Số công</th>
+                                <th>Tiền lương SX</th>
+                                <th>Trách nhiệm</th>
+                                <th>điện thoại</th>
+                                <th>Số giờ</th>
+                                <th>Tiền lương thêm giờ</th>
+                                <th>BHXH</th>
+                                <th>BHYT</th>
+                                <th>BHTN</th>
+                                <th>KPCD</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach items="${requestScope.list}" var="i">
+                                <c:if test="${i.totalWorking() != 0}">
+                                    <tr>
+                                        <td>${i.id}</td>
+                                        <td>${i.emp_name}</td>
+                                        <td>${i.position}</td>
+                                        <td><fmt:formatNumber type="number" maxFractionDigits="0" value="${i.base_salary}"/></td>
+                                        <td>
+                                            <c:choose>
+                                                <c:when test="${i.ins_salary != 0}">
+                                                    <fmt:formatNumber type="number" maxFractionDigits="0" value="${i.ins_salary}"/>
+                                                </c:when>
+                                            </c:choose>
+                                        </td>
+                                        <td><fmt:formatNumber type="number" maxFractionDigits="0" value="${i.base_salary/26}"/></td>
+                                        <td>${i.totalWorking()}</td>
+                                        <jsp:useBean id="b" class="utils.DateHelper"/>
+                                        <td><c:choose>
+                                                <c:when test="${i.isManager eq false}">
+                                                    <fmt:formatNumber type="number" maxFractionDigits="0" value="${i.base_salary/26 * i.totalWorking()}"/>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <fmt:formatNumber type="number" maxFractionDigits="0" value="${i.base_salary/b.getDaysOfMonths(requestScope.year,requestScope.month) * i.totalWorking()}"/>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </td>
+                                        <td>
+                                            <c:forEach items="${i.list_allow}" var="a">
+                                                <c:if test="${a.id == 1}">
+                                                    <fmt:formatNumber type="number" maxFractionDigits="0" value="${a.money}"/>
+                                                </c:if>
+                                            </c:forEach>
+                                        </td>
+                                        <td>
+                                            <c:forEach items="${i.list_allow}" var="a">
+                                                <c:if test="${a.id == 2}">
+                                                    <fmt:formatNumber type="number" maxFractionDigits="0" value="${a.money}"/>
+                                                </c:if>
+                                            </c:forEach>
+                                        </td>
+                                        <td>
+                                            <c:if test="${i.totalHoursOvertime()!=0}">
+                                                <fmt:formatNumber type="number" maxFractionDigits="1" minFractionDigits="0" value="${i.totalHoursOvertime()}"/>
+                                            </c:if>
+                                        </td>
+                                        <td>
+                                            <c:if test="${i.totalHoursOvertime()!=0}">
+                                                <fmt:formatNumber type="number" maxFractionDigits="0" value="${i.totalHoursOvertime() * i.base_salary/26 * 1.5/8}"/>
+                                            </c:if> 
+                                        </td>
+                                        <td>
+                                            <c:forEach items="${i.list_ins}" var="a">
+                                                <c:if test="${a.id == 1}">
+                                                    <fmt:formatNumber type="number" maxFractionDigits="0" value="${a.percent * i.ins_salary}"/>
+                                                </c:if>
+                                            </c:forEach>
+                                        </td>
+                                        <td>
+                                            <c:forEach items="${i.list_ins}" var="a">
+                                                <c:if test="${a.id == 2}">
+                                                    <fmt:formatNumber type="number" maxFractionDigits="0" value="${a.percent * i.ins_salary}"/>
+                                                </c:if>
+                                            </c:forEach>
+                                        </td>
+                                        <td>
+                                            <c:forEach items="${i.list_ins}" var="a">
+                                                <c:if test="${a.id == 3}">
+                                                    <fmt:formatNumber type="number" maxFractionDigits="0" value="${a.percent * i.ins_salary}"/>
+                                                </c:if>
+                                            </c:forEach>
+                                        </td>
+                                        <td>
+                                            <c:forEach items="${i.list_ins}" var="a">
+                                                <c:if test="${a.id == 4}">
+                                                    <fmt:formatNumber type="number" maxFractionDigits="0" value="${a.percent * i.ins_salary}"/>
+                                                </c:if>
+                                            </c:forEach>
+                                        </td>
+                                        <td>
+                                            <fmt:formatNumber type="number" maxFractionDigits="0" value="${i.getRealSalary(requestScope.year,requestScope.month)}"/>
+                                        </td>
+                                    </tr>
+                                </c:if>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </c:if>
         </div>
+        <jsp:include page="footer.jsp"></jsp:include>
     </body>
 </html>
